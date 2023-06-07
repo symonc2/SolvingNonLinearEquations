@@ -1,0 +1,70 @@
+import math, time
+
+def f(x):
+    return (3*x + math.sin(x) - math.exp(x))
+
+def g(x):
+    #g(x) = f'(x)
+    return (3 + math.cos(x) - math.exp(x))
+
+# BISECTION METHOD
+start_b = time.time()
+x0_b = 0
+x1_b = 1
+counter_b = 0
+while abs(x1_b-x0_b) > (10**-16):
+    x2_b = (x0_b + x1_b)/2
+    if f(x2_b) * f(x0_b) < 0:
+        x1_b = x2_b
+    else:
+        x0_b = x2_b
+    counter_b += 1
+end_b = time.time()
+total_time_b = end_b - start_b
+print(f"\nBisectional Method returns roots {x0_b} and {x1_b} and took {total_time_b} seconds with {counter_b} iterations.")
+
+# LI SECANT METHOD
+start_l = time.time()
+counter_l = 0
+if abs(f(x0_b)) < abs(f(x1_b)):
+    x0_l = 0 #x1_b
+    x1_l = 1 #x0_b
+else:
+    x0_l = 0 #x0_b 
+    x1_l = 1 #x1_b
+x2_l = 10 #arbitrary
+while abs(f(x2_l)) > (10**-16):
+    x2_l = x1_l - (f(x1_l)*((x0_l-x1_l)/(f(x0_l)-f(x1_l))))
+    x0_l = x1_l
+    x1_l = x2_l
+    counter_l += 1
+end_l = time.time()
+total_time_l = end_l - start_l
+print(f"\nLI Secant Method returns roots {x0_l} and {x1_l} and took {total_time_l} seconds with {counter_l} iterations.")
+
+#NEWTON'S METHOD
+start_n = time.time()
+x0_n = 0 #x0_b
+if f(x0_n) != 0 and g(x0_n) != 0:
+    counter_n = 0
+    while abs(f(x0_n)) > (10**-16):
+        x1_n = x0_n
+        x0_n = x0_n - (f(x0_n)/g(x0_n))
+        counter_n += 1
+else:
+    print("UNABLE TO USE NEWTON'S METHOD")
+    pass
+end_n = time.time()
+total_time_n = end_n - start_n
+print(f"\nNewton's Method returns root {x0_n} and took {total_time_n} seconds with {counter_n} iterations.\n")
+
+#MULLER'S METHOD
+
+
+
+#Epsilon
+epsilon=1.0
+while epsilon+1>1:
+    epsilon=epsilon/2
+epsilon=epsilon*2
+#print("The value of epsilon is:",epsilon)
