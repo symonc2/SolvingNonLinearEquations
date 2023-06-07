@@ -58,13 +58,9 @@ end_n = time.time()
 total_time_n = end_n - start_n
 print(f"\nNewton's Method returns root {x0_n} and took {total_time_n} seconds with {counter_n} iterations.\n")
 
-#MULLER'S METHOD
-
-
-
 #Epsilon
 epsilon=1.0
 while epsilon+1>1:
     epsilon=epsilon/2
 epsilon=epsilon*2
-#print("The value of epsilon is:",epsilon)
+print("The value of epsilon is:",epsilon)
